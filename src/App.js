@@ -1,12 +1,11 @@
 import './App.css';
-import WordRow from './components/WordRow';
-// import LetterTile from './components/LetterTile';
+import Board from './components/Board';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
         
-       <WordRow word="HELLO"></WordRow>
+       <Board></Board>
        
         
       

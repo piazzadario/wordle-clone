@@ -2,9 +2,7 @@ import React from "react";
 import {Card} from "react-bootstrap";
 
 
-const LetterTile = (props) => {
-
-    let {letter} = props;
+const LetterTile = ({letter}) => {
   
   
     return (

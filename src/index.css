@@ -13,5 +13,9 @@ code {
 }
 
 .word-row {
-  display: inline-flex;
+  display: inline-flex;  
+}
+
+.board {
+  display: block;
 }
