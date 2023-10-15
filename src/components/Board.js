@@ -11,7 +11,7 @@ function Board({wordToGuess}){
     const [currentInput,setCurrentInput] = useState('');
 
 
-    const hanldeKeyPressed= event=> {
+    const handleKeyPressed= event=> {
         let key=event.key.toLowerCase();
         if(!isValidKey(key)){
             return;
@@ -76,12 +76,12 @@ function Board({wordToGuess}){
 
 
     return (
-      <Container onKeyDown={hanldeKeyPressed} className="board" tabIndex={0}>
+      <div onKeyDown={handleKeyPressed} className="board" tabIndex={0}>
         {guesses.map((g,index)=> {
             let guess = index===currentGuessIndex()? currentInput:g;
             return <Container key={'guess' + index}><GuessRow guess={guess} guessNumber={index} wordToGuess={wordToGuess}></GuessRow></Container>;
         })}
-      </Container>
+      </div>
     );
   }
   export default Board;
