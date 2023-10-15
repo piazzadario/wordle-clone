@@ -35,9 +35,17 @@ code {
 }
 
 .letter-tile{
-  display: inline-block;
   height: 64px;
   width: 64px;
   text-align: center;
+  vertical-align: baseline;
+}
+
+.letter-tile h2{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 

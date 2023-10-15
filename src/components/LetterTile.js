@@ -7,7 +7,9 @@ const LetterTile = ({letter}) => {
   
     return (
       <Card className="letter-tile">
-        <Card.Body>{letter}</Card.Body>
+        <h2>
+        {letter.toUpperCase()}
+        </h2>
       </Card>
     );
   }
