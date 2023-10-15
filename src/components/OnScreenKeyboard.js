@@ -2,7 +2,7 @@ import Keyboard from 'react-simple-keyboard';
 import "react-simple-keyboard/build/css/index.css";
 
 
-function OnScreenKeyboard() {
+function OnScreenKeyboard({onKeyPressed}) {
 
   const keyboardLayout = {'default': [
     'q w e r t y u i o p',
@@ -11,7 +11,7 @@ function OnScreenKeyboard() {
   ],};
 
   return (
-      <Keyboard layoutName='default' layout={keyboardLayout}></Keyboard>
+      <Keyboard layoutName='default' layout={keyboardLayout} onKeyPress={onKeyPressed}></Keyboard>
   );
 }
 
