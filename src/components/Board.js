@@ -1,15 +1,14 @@
 import { useState } from "react";
 import {Container} from "react-bootstrap";
 import GuessRow from "./GuessRow";
-const word = "HELLO";
+
+
 const maxGuesses = 6;
 
-function Board(){
+function Board({wordToGuess}){
 
     const [guesses,setGuesses] = useState(Array(maxGuesses).fill(''));
     const [currentInput,setCurrentInput] = useState('');
-
-    
 
 
     const hanldeKeyPressed= event=> {
@@ -38,7 +37,7 @@ function Board(){
     }
 
     function handleEnter(){
-      if(currentInput.length < word.length){
+      if(currentInput.length < wordToGuess.length){
         return;
       }
       submitGuess();
@@ -65,14 +64,14 @@ function Board(){
     function handleLetter(letter){
       const newInput = currentInput+letter; // TODO: delete
       console.log(newInput);
-      if(currentInput.length===word.length){
+      if(currentInput.length===wordToGuess.length){
         return;
       }
       setCurrentInput(newInput);
     }
 
     function currentGuessIndex(){
-      return guesses.findIndex(guess=>guess.length < word.length);
+      return guesses.findIndex(guess=>guess.length < wordToGuess.length);
     }
 
 
@@ -80,7 +79,7 @@ function Board(){
       <Container onKeyDown={hanldeKeyPressed} className="board" tabIndex={0}>
         {guesses.map((g,index)=> {
             let guess = index===currentGuessIndex()? currentInput:g;
-            return <Container key={'guess' + index}><GuessRow guess={guess} guessNumber={index} wordToGuess={word}></GuessRow></Container>;
+            return <Container key={'guess' + index}><GuessRow guess={guess} guessNumber={index} wordToGuess={wordToGuess}></GuessRow></Container>;
         })}
       </Container>
     );
