@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap';
 import OnScreenKeyboard from './components/OnScreenKeyboard';
 
 
-function App() {
+function Game() {
   const [word,setWord] = useState(null);
 
   useEffect(()=>{
@@ -15,11 +15,11 @@ function App() {
 
 
   return (
-    <div className="App" >
+    <div className="Game" >
       {word === null? <Spinner></Spinner> : <Board wordToGuess={word}></Board>}
       <OnScreenKeyboard/>
     </div>
   );
 }
 
-export default App;
+export default Game;

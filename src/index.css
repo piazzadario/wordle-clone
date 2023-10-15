@@ -22,7 +22,7 @@ code {
   width: 350;
 }
 
-.App {
+.Game {
   flex-direction: column;
   align-items: center;
   display: flex;
