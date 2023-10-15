@@ -1,8 +1,4 @@
-import {Container} from "react-bootstrap";
 import GuessRow from "./GuessRow";
-
-
-
 
 function Board({wordToGuess, guesses, currentInput}){
 
@@ -15,7 +11,7 @@ function Board({wordToGuess, guesses, currentInput}){
       <div className="board">
         {guesses.map((g,index)=> {
             let guess = index===currentGuessIndex()? currentInput:g;
-            return <Container key={'guess' + index}><GuessRow guess={guess} guessNumber={index} wordToGuess={wordToGuess}></GuessRow></Container>;
+            return <GuessRow key={'guess' + index} guess={guess} guessNumber={index} wordToGuess={wordToGuess}></GuessRow>;
         })}
       </div>
     );

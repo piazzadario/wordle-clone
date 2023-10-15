@@ -14,12 +14,14 @@ code {
 }
 
 .guess-row {
-  display: inline-flex;  
+  display: inline-flex; 
+  align-items: center;
 }
 
 .board {
-  display: block;
-  width: 350;
+  display: inline-flex;
+  flex-direction: column;
+
 }
 
 .Game {
@@ -27,6 +29,13 @@ code {
   align-items: center;
   display: flex;
   min-height: 100vh;
-  /* width: 50vw; */
+  
+}
+
+.letter-tile{
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  text-align: center;
 }
 

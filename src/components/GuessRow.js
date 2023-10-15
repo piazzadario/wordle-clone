@@ -1,5 +1,4 @@
 import React from "react";
-import {Col, Row} from "react-bootstrap";
 import LetterTile from "./LetterTile";
 
 
@@ -15,9 +14,9 @@ const GuessRow = ({guess, guessNumber, wordToGuess}) => {
   }
   
     return (
-      <Row className="guess-row" key={guessNumber}>
-        {letters().map((letter,index)=> <Col key={index+guessNumber}><LetterTile letter={letter} ></LetterTile></Col>)}
-      </Row>
+      <div className="guess-row" key={guessNumber}>
+        {letters().map((letter,index)=> <LetterTile key={index+guessNumber} letter={letter} ></LetterTile>)}
+      </div>
     );
   }
   export default GuessRow;
