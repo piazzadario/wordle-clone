@@ -52,7 +52,7 @@ function Game() {
 
 
 function isValidKey(key){
-  return key==='enter' || key==='enter' ||  (key >= 'a' && key <= 'z');
+  return key==='enter' || key==='delete' ||  (key >= 'a' && key <= 'z' && key.length===1);
 }
 
 function handleEnter(){
