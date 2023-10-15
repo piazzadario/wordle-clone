@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import Keyboard from 'react-simple-keyboard';
 import "react-simple-keyboard/build/css/index.css";
-import './App.css';
 import Board from './components/Board';
 import Api from './api/api';
 import { Spinner } from 'react-bootstrap';
