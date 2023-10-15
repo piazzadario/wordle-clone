@@ -17,10 +17,21 @@ function Game() {
   },[]);
 
   
+  function handleOnScreenKeyboardPress(key){
+    var safeKey = key;
+    if(safeKey === '←'){
+      safeKey = 'delete';
+    }
+    handleKeyPressed(safeKey.toLowerCase());
+  }
 
+  function handlePhysicalKeyboardPress(event){
+    
+    handleKeyPressed(event.key.toLowerCase());
+  }
 
-  const handleKeyPressed= event=> {
-    let key=event.key.toLowerCase();
+  const handleKeyPressed= key=> {
+    
     if(!isValidKey(key)){
         return;
     }
@@ -84,9 +95,9 @@ function currentGuessIndex(){
 }
 
   return (
-    <div className="Game" tabIndex={0} onKeyDown={handleKeyPressed}>
+    <div className="Game" tabIndex={0} onKeyDown={handlePhysicalKeyboardPress}>
       {wordToGuess === null? <Spinner></Spinner> : <Board wordToGuess={wordToGuess} guesses={guesses} currentInput={currentInput}></Board>}
-      <OnScreenKeyboard />
+      <OnScreenKeyboard onKeyPressed={handleOnScreenKeyboardPress}/>
     </div>
   );
 }
