@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import "react-simple-keyboard/build/css/index.css";
-import Board from './components/Board';
-import Api from './api/api';
+import Board from './Board';
+import Api from '../api/api';
 import { Spinner } from 'react-bootstrap';
-import OnScreenKeyboard from './components/OnScreenKeyboard';
+import OnScreenKeyboard from './OnScreenKeyboard';
 
 const maxGuesses = 6;
 
-function Game() {
+function Game({onGameOver}) {
+
   const [wordToGuess,setWordToGuess] = useState(null);
   const [guesses,setGuesses] = useState(Array(maxGuesses).fill({word: '',submitted: false}));
   const [currentInput,setCurrentInput] = useState('');
@@ -26,7 +27,6 @@ function Game() {
   }
 
   function handlePhysicalKeyboardPress(event){
-    
     handleKeyPressed(event.key.toLowerCase());
   }
 
@@ -63,14 +63,18 @@ function handleEnter(){
 }
 
 function submitGuess(){
-  setGuesses(guesses.map((guess,index)=>{
+  const newGuesses = guesses.map((guess,index)=>{
     if(index === currentGuessIndex()){
       return {word: currentInput,submitted: true};
     }
 
     return guess;
-  }));
+  });
+  setGuesses(newGuesses);
   setCurrentInput('');
+  if(newGuesses.every(g => g.submitted)){
+    onGameOver(getNumberOfGuesses()+1);
+  }
 }
 
 function handleDelete(){
@@ -90,6 +94,10 @@ function handleLetter(letter){
 
 function currentGuessIndex(){
   return guesses.findIndex(guess=>guess.word.length < wordToGuess.length);
+}
+
+function getNumberOfGuesses(){
+  return guesses.filter(g => g.submitted).length;
 }
 
   return (
