@@ -49,3 +49,30 @@ code {
   transform: translate(-50%, -50%);
 }
 
+.correct{
+  animation: correct 1s forwards;
+}
+
+.wrong-position{
+  animation: wrong-position 1s forwards;
+}
+
+.not-present{
+  animation: not-present 1s forwards;
+}
+
+
+@keyframes correct {
+  from {background-color: null;}
+  to {background-color: lightgreen;}
+}
+
+@keyframes wrong-position {
+  from {background-color: null;}
+  to {background-color: rgb(240, 240, 112);}
+}
+
+@keyframes not-present {
+  from {background-color: null;}
+  to {background-color: lightcoral;}
+}
