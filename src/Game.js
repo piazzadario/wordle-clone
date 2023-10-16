@@ -9,8 +9,8 @@ const maxGuesses = 6;
 
 function Game() {
   const [wordToGuess,setWordToGuess] = useState(null);
-  const [guesses,setGuesses] = useState(Array(maxGuesses).fill(''));
-    const [currentInput,setCurrentInput] = useState('');
+  const [guesses,setGuesses] = useState(Array(maxGuesses).fill({word: '',submitted: false}));
+  const [currentInput,setCurrentInput] = useState('');
 
   useEffect(()=>{
     Api.getRandomWord().then((w)=> {console.log(w); setWordToGuess(w);});
@@ -65,7 +65,7 @@ function handleEnter(){
 function submitGuess(){
   setGuesses(guesses.map((guess,index)=>{
     if(index === currentGuessIndex()){
-      return currentInput;
+      return {word: currentInput,submitted: true};
     }
 
     return guess;
@@ -81,17 +81,15 @@ function handleDelete(){
 }
 
 function handleLetter(letter){
-  const newInput = currentInput+letter; // TODO: delete
-  console.log(newInput);
   if(currentInput.length===wordToGuess.length){
     return;
   }
-  setCurrentInput(newInput);
+  setCurrentInput(currentInput+letter);
 }
 
 
 function currentGuessIndex(){
-  return guesses.findIndex(guess=>guess.length < wordToGuess.length);
+  return guesses.findIndex(guess=>guess.word.length < wordToGuess.length);
 }
 
   return (

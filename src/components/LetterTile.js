@@ -1,35 +1,29 @@
 import React from "react";
 import {Card} from "react-bootstrap";
 
-const Status = {
+const LetterStatus = {
   correct: 'correct',
   wrongPosition: 'wrong-position',
   notPresent: 'not-present',
+  notSubmitted: 'not-submitted'
 }
 
 const LetterTile = ({letter, status}) => {
   
     function letterStyle(){
-      var baseStyle = "letter-tile";
-      if(letter===''){
-        return baseStyle;
-      }
-
+      let baseStyle = "letter-tile";
       switch(status){
-        case Status.correct:
-            baseStyle+=' correct';
-          break;
-        case Status.wrongPosition:
-            baseStyle+=' wrong-position';
-            break;
-        case Status.notPresent:
-            baseStyle+=' not-present';
-            break;
+        case LetterStatus.correct:
+            return baseStyle+' correct';
+        case LetterStatus.wrongPosition:
+          return baseStyle+' wrong-position';
+        case LetterStatus.notPresent:
+          return baseStyle+' not-present';
+        case LetterStatus.notSubmitted:
+            return baseStyle;
         default:
-          break;
+          return baseStyle;
       }
-
-      return baseStyle;
     }
   
     return (
@@ -40,4 +34,4 @@ const LetterTile = ({letter, status}) => {
       </Card>
     );
   }
-  export default LetterTile;
+  export {LetterTile, LetterStatus};
