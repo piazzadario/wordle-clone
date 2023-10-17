@@ -4,11 +4,13 @@ import Board from './Board';
 import Api from '../api/api';
 import { Button, Col, Spinner } from 'react-bootstrap';
 import OnScreenKeyboard from './OnScreenKeyboard';
+import GameRecapDialog from './GameRecapDialog';
 
 const maxGuesses = 6;
 const initialGuesses = Array(maxGuesses).fill({word: '',submitted: false});
 function Game({onGameOver, isGameOver, onNewGame}) {
 
+  const [showRecapDialog,setShowRecapDialog] = useState(false);
   const [wordToGuess,setWordToGuess] = useState(null);
   const [guesses,setGuesses] = useState(initialGuesses);
   const [currentInput,setCurrentInput] = useState('');
@@ -76,6 +78,7 @@ function submitGuess(){
   
   if(newGuesses.every(g => g.submitted) || currentInput===wordToGuess){
     onGameOver(getNumberOfGuesses()+1);
+    setShowRecapDialog(true);
   }
   setGuesses(newGuesses);
   setCurrentInput('');
@@ -106,6 +109,9 @@ function getNumberOfGuesses(){
 
 
 function startNewGame(){
+  if(showRecapDialog){
+    hideRecapDialog();
+  }
   resetGameState();
   fetchWordToGuess();
 }
@@ -117,10 +123,15 @@ function resetGameState(){
   onNewGame();
 }
 
+function hideRecapDialog(){
+  setShowRecapDialog(false);
+}
+ 
+
   return (
     <Col className="Game" tabIndex={0} onKeyDown={handlePhysicalKeyboardPress}>
       {wordToGuess === null? <Spinner></Spinner> : <Board wordToGuess={wordToGuess} guesses={guesses} currentInput={currentInput}></Board>}
-      
+      <GameRecapDialog show={showRecapDialog} onHide={hideRecapDialog} lastGameResult={getNumberOfGuesses()+1} onPlayAgain={startNewGame}></GameRecapDialog>
       <OnScreenKeyboard onKeyPressed={handleOnScreenKeyboardPress}/>
       {isGameOver? <p><Button onClick={startNewGame}>Play again</Button></p>:null}
       {isGameOver? <p>The word to guess was: <b>{wordToGuess}</b></p>:null}

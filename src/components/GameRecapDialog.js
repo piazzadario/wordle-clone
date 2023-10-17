@@ -17,7 +17,7 @@ function GameRecapDialog ({show, onHide, lastGameResult, onPlayAgain}) {
 
         <Modal.Footer>
           <Button variant="secondary" onClick={onHide}>Close</Button>
-          <Button variant="primary">Play again</Button>
+          <Button variant="primary" onClick={onPlayAgain}>Play again</Button>
         </Modal.Footer>
         </Modal>
     );
