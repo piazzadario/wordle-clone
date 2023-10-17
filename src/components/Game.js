@@ -24,7 +24,7 @@ function Game({onGameOver, isGameOver, onNewGame}) {
   function handleOnScreenKeyboardPress(key){
     var safeKey = key;
     if(safeKey === '←'){
-      safeKey = 'delete';
+      safeKey = 'backspace';
     }
     handleKeyPressed(safeKey.toLowerCase());
   }
@@ -44,7 +44,7 @@ function Game({onGameOver, isGameOver, onNewGame}) {
       return;
     }
 
-    if(key==='delete'){
+    if(key==='backspace'){
       handleDelete();
       return;
     }
@@ -55,7 +55,7 @@ function Game({onGameOver, isGameOver, onNewGame}) {
 
 
 function isValidKey(key){
-  return key==='enter' || key==='delete' ||  (key >= 'a' && key <= 'z' && key.length===1);
+  return key==='enter' || key==='backspace' ||  (key >= 'a' && key <= 'z' && key.length===1);
 }
 
 function handleEnter(){
