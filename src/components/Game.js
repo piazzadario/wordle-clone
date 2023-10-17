@@ -123,6 +123,7 @@ function resetGameState(){
       
       <OnScreenKeyboard onKeyPressed={handleOnScreenKeyboardPress}/>
       {isGameOver? <p><Button onClick={startNewGame}>Play again</Button></p>:null}
+      {isGameOver? <p>The word to guess was: <b>{wordToGuess}</b></p>:null}
     </Col>
   );
 }

@@ -82,20 +82,21 @@ code {
 .keyboard{
   margin-bottom: 5vh;
   min-width: 50vw;
+  color: black;
 }
 
 .light {
   background-color: white;
+  color: black;
 }
 
-.dark {background-color: #282c34;}
+.dark {background-color: #282c34;color: white;}
 
 .light .letter-tile{
   background-color: whitesmoke;
 }
 .dark .letter-tile{
   background-color: #282c34;
-  color: white;
   border: white solid 1px;
 }
 
