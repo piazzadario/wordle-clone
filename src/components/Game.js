@@ -2,21 +2,24 @@ import { useEffect, useState } from 'react';
 import "react-simple-keyboard/build/css/index.css";
 import Board from './Board';
 import Api from '../api/api';
-import { Spinner } from 'react-bootstrap';
+import { Button, Col, Spinner } from 'react-bootstrap';
 import OnScreenKeyboard from './OnScreenKeyboard';
 
 const maxGuesses = 6;
-
-function Game({onGameOver}) {
+const initialGuesses = Array(maxGuesses).fill({word: '',submitted: false});
+function Game({onGameOver, isGameOver, onNewGame}) {
 
   const [wordToGuess,setWordToGuess] = useState(null);
-  const [guesses,setGuesses] = useState(Array(maxGuesses).fill({word: '',submitted: false}));
+  const [guesses,setGuesses] = useState(initialGuesses);
   const [currentInput,setCurrentInput] = useState('');
 
   useEffect(()=>{
-    Api.getRandomWord().then((w)=> {console.log(w); setWordToGuess(w);});
+    fetchWordToGuess();
   },[]);
 
+  function fetchWordToGuess(){
+    Api.getRandomWord().then((w)=> {console.log(w); setWordToGuess(w);});
+  }
   
   function handleOnScreenKeyboardPress(key){
     var safeKey = key;
@@ -101,11 +104,26 @@ function getNumberOfGuesses(){
   return guesses.filter(g => g.submitted).length;
 }
 
+
+function startNewGame(){
+  resetGameState();
+  fetchWordToGuess();
+}
+
+function resetGameState(){
+  setWordToGuess(null);
+  setCurrentInput('');
+  setGuesses(initialGuesses);
+  onNewGame();
+}
+
   return (
-    <div className="Game" tabIndex={0} onKeyDown={handlePhysicalKeyboardPress}>
+    <Col className="Game" tabIndex={0} onKeyDown={handlePhysicalKeyboardPress}>
       {wordToGuess === null? <Spinner></Spinner> : <Board wordToGuess={wordToGuess} guesses={guesses} currentInput={currentInput}></Board>}
+      
       <OnScreenKeyboard onKeyPressed={handleOnScreenKeyboardPress}/>
-    </div>
+      {isGameOver? <p><Button onClick={startNewGame}>Play again</Button></p>:null}
+    </Col>
   );
 }
 

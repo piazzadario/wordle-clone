@@ -24,6 +24,7 @@ code {
   display: inline-flex;
   flex-direction: column;
   row-gap: 10px;
+  margin-bottom: 10vh;
 }
 
 .Game {
@@ -31,7 +32,6 @@ code {
   align-items: center;
   display: flex;
   min-height: 100vh;
-  
 }
 
 .letter-tile{
@@ -75,4 +75,8 @@ code {
 @keyframes not-present {
   from {background-color: null;}
   to {background-color: lightcoral;}
+}
+
+.keyboard{
+  margin-bottom: 10vh;
 }

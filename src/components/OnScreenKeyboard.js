@@ -11,7 +11,10 @@ function OnScreenKeyboard({onKeyPressed}) {
   ],};
 
   return (
+    <div className='keyboard'>
       <Keyboard layoutName='default' layout={keyboardLayout} onKeyPress={onKeyPressed}></Keyboard>
+      
+    </div>
   );
 }
 
