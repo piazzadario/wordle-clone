@@ -70,11 +70,12 @@ function submitGuess(){
 
     return guess;
   });
-  setGuesses(newGuesses);
-  setCurrentInput('');
-  if(newGuesses.every(g => g.submitted)){
+  
+  if(newGuesses.every(g => g.submitted) || currentInput===wordToGuess){
     onGameOver(getNumberOfGuesses()+1);
   }
+  setGuesses(newGuesses);
+  setCurrentInput('');
 }
 
 function handleDelete(){

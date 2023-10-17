@@ -3,12 +3,13 @@ import Game from "./components/Game";
 import { Button, Modal } from "react-bootstrap";
 import GameHistoryChart from "./components/GameHistoryChart";
 import GameHistoryManager from "./managers/GameHistoryManager";
+import GameRecapDialog from "./components/GameRecapDialog";
 
 
 function App(){
     const [isGameOver,setIsGameOver] = useState(false);
     const [showRecapDialog,setShowRecapDialog] = useState(false);
-    const [lastGameResult,setLastGameResult] = useState(1);
+    const [lastGameResult,setLastGameResult] = useState(0);
     
     
     function saveResult(numberOfGuesses){
@@ -18,31 +19,25 @@ function App(){
         saveResult(numberOfGuesses);
         setIsGameOver(true);
         setShowRecapDialog(true);
+        setLastGameResult(numberOfGuesses);
     }
 
     function onNewGame(){
         setIsGameOver(false);
     }
 
+    function hideRecapDialog(){
+      setShowRecapDialog(false);
+    }
+
+    function startNewGame(){
+      setIsGameOver(false);
+    }
+
     return (
       <div>
-        <Game onGameOver={onGameOver}></Game>
-        <Modal show={true} onHide={()=>setShowRecapDialog(false)}>
-        <Modal.Header closeButton >
-          <Modal.Title>Game recap</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          {lastGameResult !== 0? <p>You guessed the word in <b>{lastGameResult}</b> guess(es)</p> : <p>You did not guess the word</p>}
-          <GameHistoryChart/>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-        </Modal>
-        
+        <Game onGameOver={onGameOver}/>
+        <GameRecapDialog show={showRecapDialog} onHide={hideRecapDialog} lastGameResult={lastGameResult} onPlayAgain={startNewGame}/>
       </div>
     );
   }
