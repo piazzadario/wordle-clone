@@ -10,7 +10,7 @@ function AppHeader ({onShowGamesHistory, onToggleTheme, theme}) {
           <Navbar.Brand className="brand">Wordle</Navbar.Brand>
           
           <Form className="d-flex">
-            <Form.Check checked={theme==='dark'} type="switch" label='Dark mode' className="theme-switcher me-4" onClick={onToggleTheme}>
+            <Form.Check checked={theme==='dark'} type="switch" label='Dark mode' className="theme-switcher me-4" onChange={onToggleTheme}>
             </Form.Check>
 
             <Button onClick={onShowGamesHistory}>
