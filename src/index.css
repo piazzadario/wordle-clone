@@ -114,3 +114,12 @@ code {
   color: black;
   
 }
+
+.dark .theme-switcher{
+  color: white;
+}
+.light .theme-switcher{
+  color: black;
+  
+}
+
