@@ -3,6 +3,7 @@ import Game from "./components/Game";
 import GameHistoryManager from "./managers/GameHistoryManager";
 import AppHeader from "./components/AppHeader";
 import GameHistoryDialog from "./components/GameHistoryDialog";
+import { ThemeContext } from "./Theme";
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme");
@@ -58,11 +59,14 @@ function App(){
       localStorage.setItem("theme", theme);
     }
     return (
-        <div className={theme}>
+      <ThemeContext.Provider value={theme}>
+<div className={theme}>
         <AppHeader onShowGamesHistory={showGameHistoryDialog} onToggleTheme={toggleTheme} theme={theme}/>
         <Game onGameOver={onGameOver} isGameOver={isGameOver} onNewGame={onNewGame}/>
         <GameHistoryDialog show={showGameHistory} onHide={hideGameHistoryDialog}/>
       </div>
+      </ThemeContext.Provider>
+        
     );
   }
   export default App;

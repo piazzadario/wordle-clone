@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
 import GameHistoryChart from "./GameHistoryChart";
+import { ThemeContext } from "../Theme";
+
 
 function GameHistoryDialog ({show, onHide}) {
+const theme = useContext(ThemeContext);
 
     return (
         <Modal show={show} onHide={onHide}>
-        <Modal.Header closeButton >
+          <div className={'modal-'+theme}>
+          <Modal.Header >
           <Modal.Title>Game history</Modal.Title>
         </Modal.Header>
 
@@ -17,6 +21,8 @@ function GameHistoryDialog ({show, onHide}) {
         <Modal.Footer>
           <Button variant="secondary" onClick={onHide}>Close</Button>
         </Modal.Footer>
+          </div>
+        
         </Modal>
     );
   }

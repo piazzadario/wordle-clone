@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
 import GameHistoryChart from "./GameHistoryChart";
+import { ThemeContext } from "../Theme";
 
 function GameRecapDialog ({show, onHide, lastGameResult, onPlayAgain}) {
+  const theme = useContext(ThemeContext);
 
     return (
         <Modal show={show} onHide={onHide}>
-        <Modal.Header closeButton >
+          <div className={'modal-'+theme}>
+
+        <Modal.Header >
           <Modal.Title>Game recap</Modal.Title>
         </Modal.Header>
 
@@ -19,6 +23,7 @@ function GameRecapDialog ({show, onHide, lastGameResult, onPlayAgain}) {
           <Button variant="secondary" onClick={onHide}>Close</Button>
           <Button variant="primary" onClick={onPlayAgain}>Play again</Button>
         </Modal.Footer>
+          </div>
         </Modal>
     );
   }
