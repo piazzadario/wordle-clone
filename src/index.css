@@ -25,6 +25,7 @@ code {
   flex-direction: column;
   row-gap: 10px;
   margin-bottom: 10vh;
+  margin-top: 5vh;
 }
 
 .Game {
@@ -39,6 +40,7 @@ code {
   width: 64px;
   text-align: center;
   vertical-align: baseline;
+  
 }
 
 .letter-tile h2{
@@ -69,7 +71,7 @@ code {
 
 @keyframes wrong-position {
   from {background-color: null;}
-  to {background-color: rgb(240, 240, 112);}
+  to {background-color: rgb(192, 192, 60);}
 }
 
 @keyframes not-present {
@@ -78,5 +80,37 @@ code {
 }
 
 .keyboard{
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+  min-width: 50vw;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {background-color: #282c34;}
+
+.light .letter-tile{
+  background-color: whitesmoke;
+}
+.dark .letter-tile{
+  background-color: #282c34;
+  color: white;
+  border: white solid 1px;
+}
+
+.dark .app-header{
+  color: #282c34;
+  
+}
+.light .app-header{
+  background-color: white;
+}
+
+.dark .brand{
+  color: white;
+}
+.light .brand{
+  color: black;
+  
 }

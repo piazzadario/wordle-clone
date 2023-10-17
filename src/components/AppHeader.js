@@ -7,7 +7,7 @@ function AppHeader ({onShowGamesHistory}) {
   return (
     <Navbar className='app-header'>
       <Container>
-          <Navbar.Brand>Wordle</Navbar.Brand>
+          <Navbar.Brand className="brand">Wordle</Navbar.Brand>
           <Button onClick={onShowGamesHistory}>
               Game history
           </Button>
